@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="On explicit save action" serverName="Joomla433" remoteFilesAllowedToDisappearOnAutoupload="false" autoUploadExternalChanges="true">
+    <serverData>
+      <paths name="Joomla433">
+        <serverdata>
+          <mappings>
+            <mapping deploy="src" local="$PROJECT_DIR$/src" web="/" />
+            <mapping local="" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="testphp8optom.semena-tut.ru">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/libraries/Wishbox/src" local="$PROJECT_DIR$/src" web="/" />
+            <mapping local="" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ON_EXPLICIT_SAVE" />
+  </component>
+</project>
