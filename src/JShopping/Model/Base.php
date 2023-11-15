@@ -16,9 +16,20 @@ defined('_JEXEC') or die;
 
 /**
  * @property CMSApplicationInterface $app
+ *
  * @since 1.0.0
  */
 class Base extends BaseModel
 {
 	use MainTrait;
+
+	/**
+	 * Constructor
+	 *
+	 * @since 1.0.0
+	 */
+	public function __construct()
+	{
+
+	}
 }

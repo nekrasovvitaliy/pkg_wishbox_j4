@@ -23,7 +23,7 @@ defined('_JEXEC') or die;
  * @since 1.0.0
  * @noinspection PhpUnused
  */
-class ButtonField extends FormField
+class LinkField extends FormField
 {
 	/**
 	 * The form field type.
@@ -31,7 +31,31 @@ class ButtonField extends FormField
 	 * @var    string
 	 * @since  1.0.0
 	 */
-	protected $type = 'Button';
+	protected $type = 'Link';
+
+	/**
+	 * Href
+	 *
+	 * @var    string
+	 * @since  1.0.0
+	 */
+	protected string $href;
+
+	/**
+	 * Text
+	 *
+	 * @var    string
+	 * @since  1.0.0
+	 */
+	protected string $text;
+
+	/**
+	 * Target
+	 *
+	 * @var    string
+	 * @since  1.0.0
+	 */
+	protected string $target;
 
 	/**
 	 * Method to attach a Form object to the field.
@@ -53,8 +77,9 @@ class ButtonField extends FormField
 
 		if ($return)
 		{
+			$this->href = (string) $this->element['href'];
 			$this->text = (string) $this->element['text'];
-			$this->onclick = (string) $this->element['onclick'];
+			$this->target = (string) $this->element['target'];
 		}
 
 		return $return;
@@ -87,9 +112,9 @@ class ButtonField extends FormField
 			);
 		}
 
-		$html = '<button class="btn btn-warning button" type="button" onclick="' . $this->onclick . '">';
+		$html = '<a class="btn btn-warning button" href="' . $this->href . '" target="' . $this->target . '" >';
 		$html .= Text::_($this->text);
-		$html .= '</button>';
+		$html .= '</a>';
 
 		return $html;
 	}

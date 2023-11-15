@@ -17,16 +17,19 @@ class ShippingProduct
 {
 	/**
 	 * @var integer $width Width
+	 * @since 1.0.0
 	 */
 	public int $width;
 
 	/**
 	 * @var integer $height Height
+	 * @since 1.0.0
 	 */
 	public int $height;
 
 	/**
 	 * @var integer $length Length
+	 * @since 1.0.0
 	 */
 	public int $length;
 }

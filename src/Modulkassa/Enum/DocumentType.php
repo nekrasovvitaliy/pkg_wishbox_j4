@@ -3,12 +3,13 @@
  * @copyright 2023 Nekrasov Vitaliy
  * @license GNU General Public License version 2 or later
  */
+namespace Wishbox\Modulkassa\Enum;
 
 /**
- * @since 1.0.0
  * @noinspection PhpUnused
  */
-abstract class ApiClient
+enum DocumentType
 {
-
+	case SALE;
+	case RETURN;
 }

@@ -31,12 +31,6 @@ class ShippingForm extends ShippingFormRoot
 	public int $version = 2;
 
 	/**
-	 * @var string $title Title
-	 * @since 1.0.0
-	 */
-	private string $title;
-
-	/**
 	 * Constructor
 	 * @since 1.0.0
 	 */

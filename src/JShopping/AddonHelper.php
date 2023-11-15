@@ -71,6 +71,7 @@ class AddonHelper
 	 */
 	public static function getAddonParamsByAlias(string $addonAlias): Registry
 	{
+
 		/**
 		 * @var AddonTable $addonTable
 		 */

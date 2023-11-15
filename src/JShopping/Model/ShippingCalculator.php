@@ -5,6 +5,8 @@
  */
 namespace Wishbox\JShopping\Model;
 
+use Joomla\Component\Jshopping\Site\Model\CartModel;
+use Joomla\Component\Jshopping\Site\Table\ProductTable;
 use Joomla\Component\Jshopping\Site\Table\ShippingmethodpriceTable;
 use Joomla\Component\Jshopping\Site\Lib\JSFactory;
 use Wishbox\JShopping\ShippingTariff;
@@ -16,42 +18,70 @@ defined('_JEXEC') or die;
 
 /**
  * @property ?mixed $addon
- * @noinspection PhpUnused
+ *
  * @since 1.0.0
  */
-class ShippingCalculator extends Base
+class ShippingCalculator extends Base implements ShippingCalculatorInterface
 {
 	/**
 	 * @var array $tariffs Tariffs
+	 *
 	 * @since 1.0.0
 	 */
 	protected static array $tariffs = [];
 
 	/**
 	 * @var boolean $calculated Is calculated
+	 *
 	 * @since 1.0.0
 	 */
 	protected bool $calculated = false;
 
 	/**
+	 * Возвращает стоимость доставки
+	 *
+	 * @param	CartModel                 $cart                 Cart
+	 * @param	array                     $params               Params
+	 * @param	array                     $price                Price
+	 * @param	object                    $shippingExtRow       Shipping ext row
+	 * @param	ShippingMethodPriceTable  $shippingMethodPrice  Shipping method price
+	 *
+	 * @return array
+	 *
+	 * @since 1.0.0
+	 */
+	public function getPrice(
+		CartModel $cart,
+		array $params,
+		array &$price,
+		object &$shippingExtRow,
+		ShippingMethodPriceTable &$shippingMethodPrice
+	): array
+	{
+		return [];
+	}
+
+	/**
 	 * getTariff
 	 *
-	 * @param   int $shPrMethodId Shipping price method id
+	 * @param   integer  $shPrMethodId  Shipping price method id
 	 *
-	 * @return      ?ShippingTariff
+	 * @return ?ShippingTariff
+	 *
 	 * @since 1.0.0
-	 * @noinspection PhpUnused
 	 */
 	public function getTariff(int $shPrMethodId): ?ShippingTariff
 	{
 		if (!$this->calculated)
 		{
+			/** @var CartModel $cart */
 			$cart = JSFactory::getModel('cart', 'Site');
+
 			$cart->load();
-			/**
-			 * @var ShippingmethodpriceTable $shippingmethodpriceTable
-			 */
+
+			/** @var ShippingmethodpriceTable $shippingmethodpriceTable */
 			$shippingmethodpriceTable = JSFactory::getTable('shippingMethodPrice');
+
 			$shippingmethodpriceTable->load($shPrMethodId);
 			$shippingmethodpriceTable->calculateSum($cart);
 			$this->calculated = true;
@@ -61,9 +91,12 @@ class ShippingCalculator extends Base
 	}
 
 	/**
-	 * @param   int $productId Product id
+	 * @param   integer  $productId  Product id
+	 *
 	 * @return array
+	 *
 	 * @since 1.0.0
+	 *
 	 * @noinspection PhpUnused
 	 */
 	protected function getProductDimensions(int $productId): array
@@ -72,6 +105,8 @@ class ShippingCalculator extends Base
 		$widthExtraFieldId = $this->addon->params->get('width_extra_field_id', 0);
 		$heightExtraFieldId = $this->addon->params->get('height_extra_field_id', 0);
 		$lengthExtraFieldId = $this->addon->params->get('length_extra_field_id', 0);
+
+		/** @var ProductTable $productTable */
 		$productTable = JSFactory::getTable('product');
 		$productTable->load($productId);
 

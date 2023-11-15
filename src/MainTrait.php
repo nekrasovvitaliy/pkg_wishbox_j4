@@ -40,7 +40,7 @@ trait MainTrait
 				// phpcs:ignore
 				if (empty($this->addon_alias) && empty($this->addonAlias))
 				{
-					throw new Exception('Addon_alias is empty', 500);
+					throw new Exception('$ddon_alias and $addonAlias are empty', 500);
 				}
 
 				$addonAlias = '';
@@ -61,7 +61,8 @@ trait MainTrait
 					JPATH_SITE . '/components/com_jshopping/addons/' . $addonAlias . '/' . $addonAlias . '.php'
 				);
 
-		return call_user_func($addonClass . '::getInstance');
+				return call_user_func($addonClass . '::getInstance');
+
 			case 'addonParams':
 				// phpcs:ignore
 				if (empty($this->addon_alias) && empty($this->addonAlias))
@@ -81,8 +82,30 @@ trait MainTrait
 					$addonAlias = $this->addonAlias;
 				}
 
-		return AddonHelper::getAddonParamsByAlias($addonAlias);
+				return AddonHelper::getAddonParamsByAlias($addonAlias);
+
+			case 'errorCategory':
+				// phpcs:ignore
+				if (empty($this->addon_alias) && empty($this->addonAlias))
+				{
+					throw new Exception('Addon_alias is empty', 500);
+				}
+
+				$addonAlias = '';
+
+				if (!empty($this->addon_alias)) // phpcs:ignore
+				{
+					$addonAlias = $this->addon_alias; // phpcs:ignore
+				}
+
+				if (!empty($this->addonAlias))
+				{
+					$addonAlias = $this->addonAlias;
+				}
+
+				return  'com_jshopping.addon_' . $addonAlias;
 			case 'adv_user':
+			case 'advUser':
 				return JSFactory::getUser();
 			case 'app':
 				return Factory::getApplication();
@@ -95,6 +118,7 @@ trait MainTrait
 			case 'language':
 				return $app->getLanguage();
 			case 'config':
+			case 'jsconfig':
 				return JSFactory::getConfig();
 		}
 

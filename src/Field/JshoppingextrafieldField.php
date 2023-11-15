@@ -29,10 +29,10 @@ class JshoppingextrafieldField extends ListField
 	protected $type = 'wishboxjshoppingextrafield';
 
 	/**
-	 * @var    integer Extra field type
+	 * @var    array Extra field type
 	 * @since 1.0.0
 	 */
-	protected int $extraFieldType;
+	protected array $extraFieldType;
 
 	/**
 	 * Method to attach a Form object to the field.
@@ -57,7 +57,7 @@ class JshoppingextrafieldField extends ListField
 		{
 			$extraFieldType = explode(',', (string) $this->element['extrafield_type']);
 			$extraFieldType = array_diff($extraFieldType, ['']);
-			$this->extraFieldType = (int) $extraFieldType;
+			$this->extraFieldType = $extraFieldType;
 		}
 
 		return $return;

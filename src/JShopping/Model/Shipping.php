@@ -8,21 +8,26 @@ namespace Wishbox\JShopping\Model;
 use Joomla\CMS\Language\Text;
 use Joomla\Component\Jshopping\Site\Lib\JSFactory;
 use Joomla\Component\Jshopping\Site\Table\ShippingextTable;
+use Joomla\Component\Jshopping\Site\Table\ShippingMethodPriceTable;
 use Joomla\Component\Jshopping\Site\View\Checkout\HtmlView;
+use Joomla\Registry\Registry;
 
 // phpcs:disable PSR1.Files.SideEffects
 defined('_JEXEC') or die;
 // phpcs:enable PSR1.Files.SideEffects
 
 /**
- * @property mixed $addon
+ * @property Registry $addonParams
+ *
  * @since 1.0.0
+ *
  * @noinspection PhpUnused
  */
 class Shipping extends Base
 {
 	/**
 	 * @return array
+	 *
 	 * @since 1.0.0
 	 */
 	public function getShippingMethodIds(): array
@@ -30,11 +35,12 @@ class Shipping extends Base
 		$shippingextAlias = 'sm_wishbox' . mb_strtolower(
 			str_replace('Model', '', mb_substr($this::class, mb_strrpos($this::class, '\\') + 1))
 		);
-		/**
-		 * @var ShippingextTable $shippingextTable
-		 */
+
+		/** @var ShippingextTable $shippingextTable */
 		$shippingextTable = JSFactory::getTable('shippingext');
+
 		$shippingextTable->loadFromAlias($shippingextAlias);
+
 		$shippingMethodsKeyIds = unserialize($shippingextTable->shipping_method); // phpcs:ignore
 		$shippingMethodsIds = [];
 
@@ -51,20 +57,23 @@ class Shipping extends Base
 
 	/**
 	 * @param   HtmlView $view Shippings view
+	 *
 	 * @return void
+	 *
 	 * @since 1.0.0
+	 *
 	 * @noinspection PhpUnused
 	 */
 	public function onBeforeDisplayCheckoutStep4View(HtmlView $view): void
 	{
-		if (!$this->addon->params->get('show_non_calculated_shipping_methods', 0))
+		if (!$this->addonParams->get('show_non_calculated_shipping_methods', 0))
 		{
 			$this->hideNonCalculatedShippingMethods($view);
 		}
 
 		$this->setDelivery($view);
 
-		if ($this->addon->params->get('checkout_shippings_show_tariff_names', 0))
+		if ($this->addonParams->get('checkout_shippings_show_tariff_names', 0))
 		{
 			$this->setTariffName($view);
 		}
@@ -72,8 +81,11 @@ class Shipping extends Base
 
 	/**
 	 * @param   HtmlView $view Shippings view
+	 *
 	 * @return void
+	 *
 	 * @since 1.0.0
+	 *
 	 * @noinspection PhpVariableNamingConventionInspection
 	 */
 	public function hideNonCalculatedShippingMethods(HtmlView $view): void
@@ -82,7 +94,9 @@ class Shipping extends Base
 
 		foreach ($view->shipping_methods as $k => $shippingMethod) // phpcs:ignore
 		{
+			/** @var ShippingMethodPriceTable $shippingmethodpriceTable */
 			$shippingmethodpriceTable = JSFactory::getTable('shippingmethodprice');
+
 			$shippingmethodpriceTable->load($shippingMethod->sh_pr_method_id); // phpcs:ignore
 
 			if (in_array($shippingMethod->shipping_id, $shippingMethodsIds) // phpcs:ignore
@@ -101,7 +115,9 @@ class Shipping extends Base
 
 	/**
 	 * @param   HtmlView $view Shippings view
+	 *
 	 * @return void
+	 *
 	 * @since 1.0.0
 	 */
 	public function setDelivery(HtmlView$view): void
@@ -114,6 +130,7 @@ class Shipping extends Base
 			{
 				/** @var ShippingCalculator $shipingcalculatorModel */
 				$shipingcalculatorModel = JSFactory::getModel('cdek', 'Site\\Wishbox\\Shippingcalculator');
+
 				$tariff = $shipingcalculatorModel->getTariff($shippingMethod->sh_pr_method_id); // phpcs:ignore
 
 				if ($tariff)
@@ -143,12 +160,16 @@ class Shipping extends Base
 
 	/**
 	 * @param   HtmlView $view Checkout view
+	 *
 	 * @return void
+	 *
 	 * @since 1.0.0
 	 */
 	public function setTariffName(HtmlView $view): void
 	{
 		$shippingMethodsIds = $this->getShippingMethodIds();
+
+
 		$shipingcalculatorModel = JSFactory::getModel('cdek', 'Site\\Wishbox\\Shippingcalculator');
 
 		foreach ($view->shipping_methods as $k => $shippingMethod) // phpcs:ignore
@@ -171,8 +192,11 @@ class Shipping extends Base
 
 	/**
 	 * @param   HtmlView $view Checkout view
+	 *
 	 * @return array
+	 *
 	 * @since 1.0.0
+	 *
 	 * @noinspection PhpUnused
 	 */
 	public function getShippingDaysByShippingMethodId(HtmlView $view): array

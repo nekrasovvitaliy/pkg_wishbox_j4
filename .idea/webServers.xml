@@ -2,7 +2,7 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="7ddd3f48-b27e-483f-bbe4-71c20df21ed9" name="Joomla433" url="http://localhost">
+      <webServer id="7ddd3f48-b27e-483f-bbe4-71c20df21ed9" name="Joomla433 (project level)" url="http://localhost">
         <fileTransfer mountedRoot="C:\OpenServer\domains\joomla433.test1.ru\libraries\Wishbox" accessType="MOUNT" port="0" />
       </webServer>
     </option>

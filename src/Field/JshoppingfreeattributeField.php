@@ -5,29 +5,31 @@
  */
 namespace Wishbox\Field;
 
-use RuntimeException;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\Component\Jshopping\Site\Lib\JSFactory;
-use Joomla\Component\Jshopping\Site\Table\ShippingMethodTable;
+use Joomla\Component\Jshopping\Site\Table\FreeAttributTable;
+use RuntimeException;
 use function defined;
 
 // phpcs:disable PSR1.Files.SideEffects
-defined('JPATH_PLATFORM') or die;
+defined('_JEXEC') or die;
 // phpcs:enable PSR1.Files.SideEffects
 
 /**
  * @since 1.0.0
+ *
  * @noinspection PhpUnused
  */
-class JshoppingshippingmethodField extends ListField
+class JshoppingfreeattributeField extends ListField
 {
 	/**
 	 * The form field type.
 	 *
 	 * @var    string
+	 *
 	 * @since  1.0.0
 	 */
-	protected $type = 'jhoppingshippingmethod';
+	protected $type = 'jshoppingfreeattribute';
 
 	/**
 	 * Method to get the list of options.
@@ -38,29 +40,28 @@ class JshoppingshippingmethodField extends ListField
 	 */
 	protected function getOptions(): array
 	{
-		$options = [];
-
 		if (!file_exists(JPATH_SITE . '/components/com_jshopping/bootstrap.php'))
 		{
 			throw new RuntimeException('Please install component \"joomshopping\"', 500);
 		}
 
 		require_once JPATH_SITE . '/components/com_jshopping/bootstrap.php';
-		/**
-		 * @var ShippingmethodTable $shippingmethodTable
-		 */
-		$shippingmethodTable = JSFactory::getTable('shippingmethod');
-		$shippingMethods = $shippingmethodTable->getAllShippingMethods();
 
-		// Build the options list from the list of files.
-		if (is_array($shippingMethods))
+		$options = [];
+
+		/** @var FreeattributTable $freeattributTable */
+		$freeattributTable = JSFactory::getTable('freeattribut');
+
+		$freeattributes = $freeattributTable->getAll();
+
+		if (is_array($freeattributes) && count($freeattributes))
 		{
-			foreach ($shippingMethods as $shippingMethod)
+			foreach ($freeattributes as $freeattribute)
 			{
 				$options[] = HTMLHelper::_(
 					'select.option',
-					$shippingMethod->shipping_id, // phpcs:ignore
-					$shippingMethod->name
+					$freeattribute->id,
+					$freeattribute->name
 				);
 			}
 		}

@@ -11,6 +11,8 @@ use Joomla\CMS\Http\HttpFactory;
 use Joomla\Http\Response;
 use Joomla\CMS\Log\Log;
 use stdClass;
+use Wishbox\Modulkassa\Enum\DocumentType;
+use Wishbox\Modulkassa\Enum\PaymentType;
 use function defined;
 
 // phpcs:disable PSR1.Files.SideEffects
@@ -46,30 +48,6 @@ class Apiclient
 	 * @since 1.0.0
 	 */
 	protected string $retailPointId;
-
-	/**
-	 * @since 1.0.0
-	 * @noinspection PhpUnused
-	 */
-	public const DOCUMENT_TYPE_SALE = 'SALE';
-
-	/**
-	 * @since 1.0.0
-	 * @noinspection PhpUnused
-	 */
-	public const DOCUMENT_TYPE_RETURN = 'RETURN';
-
-	/**
-	 * @since 1.0.0
-	 * @noinspection PhpUnused
-	 */
-	public const PAYMENT_TYPE_CASH = 'CASH';
-
-	/**
-	 * @since 1.0.0
-	 * @noinspection PhpUnused
-	 */
-	public const PAYMENT_TYPE_CARD = 'CARD';
 
 	/**
 	 * @since 1.0.0
@@ -121,15 +99,15 @@ class Apiclient
 
 	/**
 	 * Send
-	 * @param   string $docType      Doc type
-	 * @param   array  $orders       Orders
-	 * @param   string $paymentType  Payment type
-	 * @param   bool   $printReceipt Print receipt
+	 * @param   DocumentType $docType      Doc type
+	 * @param   array        $orders       Orders
+	 * @param   PaymentType  $paymentType  Payment type
+	 * @param   bool         $printReceipt Print receipt
 	 * @return ?stdclass[]
 	 * @throws Exception
 	 * @since 1.0.0
 	 */
-	public function send(string $docType, array $orders, string $paymentType = '', bool $printReceipt = true): ?array
+	public function send(DocumentType $docType, array $orders, PaymentType $paymentType, bool $printReceipt = true): ?array
 	{
 		if (count($orders) == 0)
 		{
@@ -161,11 +139,11 @@ class Apiclient
 			{
 				if ($paymentMethodId == 2)
 				{
-					$paymentType = self::PAYMENT_TYPE_CASH;
+					$paymentType = PaymentType::CASH;
 				}
 				else
 				{
-					$paymentType = self::PAYMENT_TYPE_CARD;
+					$paymentType = PaymentType::CARD;
 				}
 			}
 

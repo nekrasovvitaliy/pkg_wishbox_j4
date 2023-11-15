@@ -11,6 +11,7 @@ defined('_JEXEC') or die;
 
 /**
  * @since 1.0.0
+ *
  * @noinspection PhpUnused
  */
 class Products extends Base

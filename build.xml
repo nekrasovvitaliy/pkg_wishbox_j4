@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="pkg_wishbox_j4" default="make" basedir=".">
+    <tstamp>
+        <format property="build.date" pattern="%Y-%m-%d" />
+    </tstamp>
+
+    <property name="build" value="build" />
+    <property name="prefix" value="pkg_" />
+    <property name="extension" value="wishbox" />
+    <property name="jversion" value="_j4" />
+
+    <target name="make" description="Builds the extension release package for a version.">
+        <echo msg="Making the${build}/${prefix}${extension}${jversion} package." />
+
+        <zip destfile="${prefix}${extension}${jversion}.zip">
+            <fileset dir=".">
+                <include name="src/**" />
+                <include name="Wishbox.xml" />
+            </fileset>
+        </zip>
+    </target>
+</project>

@@ -3,7 +3,7 @@
  * @copyright 2023 Nekrasov Vitaliy
  * @license GNU General Public License version 2 or later
  */
-namespace LapayGroup\RussianPost\Exceptions;
+namespace Wishbox\ShippingService\Russianpost\Exception;
 
 use Exception;
 

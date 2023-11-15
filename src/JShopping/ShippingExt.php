@@ -16,6 +16,8 @@ use Joomla\Component\Jshopping\Site\Table\ConfigTable;
 use Joomla\Component\Jshopping\Site\Table\ShippingExtTable;
 use Joomla\Component\Jshopping\Site\Table\ShippingMethodPriceTable;
 use ShippingExtRoot;
+use stdClass;
+use Wishbox\JShopping\Model\ShippingCalculatorInterface;
 use Wishbox\MainTrait;
 
 // phpcs:disable PSR1.Files.SideEffects
@@ -27,8 +29,9 @@ defined('_JEXEC') or die;
  */
 
 /**
- * @property Language $language
- * @property ConfigTable $config
+ * @property Language     $language
+ * @property ConfigTable  $config
+ *
  * @since 1.0.0
  */
 class ShippingExt extends ShippingExtRoot
@@ -37,18 +40,14 @@ class ShippingExt extends ShippingExtRoot
 
 	/**
 	 * @var integer $version Version
+	 *
 	 * @since 1.0.0
 	 */
 	public int $version = 2;
 
 	/**
-	 * @var string $title Title
-	 * @since 1.0.0
-	 */
-	private string $title;
-
-	/**
 	 * Constructor
+	 *
 	 * @since 1.0.0
 	 */
 	public function __construct()
@@ -60,8 +59,11 @@ class ShippingExt extends ShippingExtRoot
 	 * @param   array            $params             Params
 	 * @param   ShippingExtTable $shipping_ext_row   ShippingExtTable object
 	 * @param   HtmlView         $template           HtmlView
+	 *
 	 * @return void
+	 *
 	 * @since 1.0.0
+	 *
 	 * @noinspection PhpVariableNamingConventionInspection
 	 */
 	public function showShippingPriceForm(
@@ -97,7 +99,9 @@ class ShippingExt extends ShippingExtRoot
 	 * @param   ConfigTable      $config       Config
 	 * @param   ShippingextTable $shipping_ext Shipping extention
 	 * @param   HtmlView         $template     HtmlView
+	 *
 	 * @return void
+	 *
 	 * @since 1.0.0
 	 */
 	public function showConfigForm(
@@ -113,22 +117,28 @@ class ShippingExt extends ShippingExtRoot
 	 * @param   CartModel                $cart                  Cart model
 	 * @param   mixed                    $params                Params
 	 * @param   mixed                    $price                 Price
-	 * @param   ShippingextTable         $shippingExtRow        Shipping ext row
+	 * @param   stdClass                 $shippingExtRow        Shipping ext row
 	 * @param   ShippingmethodpriceTable $shippingMethodPrice   Shipping method price
+	 *
 	 * @return mixed
+	 *
 	 * @since 1.0.0
+	 *
 	 * @noinspection PhpUnused
 	 */
 	public function getPrices(
 		CartModel $cart,
 		array $params,
-		float &$price,
-		ShippingextTable &$shippingExtRow,
+		array &$price,
+		stdClass &$shippingExtRow,
 		ShippingmethodpriceTable &$shippingMethodPrice
-	): float
+	): array
 	{
 		$calculatorModelClass = mb_substr(get_class($this), 10);
+
+		/** @var ShippingCalculatorInterface $calculatorModel */
 		$calculatorModel = JSFactory::getModel($calculatorModelClass, 'Site\\Wishbox\\Shippingcalculator');
+
 		$price = $calculatorModel->getPrice($cart, $params, $price, $shippingExtRow, $shippingMethodPrice);
 
 		return $price;

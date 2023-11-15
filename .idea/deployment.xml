@@ -1,11 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="On explicit save action" serverName="Joomla433" remoteFilesAllowedToDisappearOnAutoupload="false" autoUploadExternalChanges="true">
+  <component name="PublishConfigData" autoUpload="On explicit save action" serverName="joomla440.test1.ru" remoteFilesAllowedToDisappearOnAutoupload="false" confirmBeforeUploading="false" autoUploadExternalChanges="true" showAutoUploadSettingsWarning="false">
+    <option name="confirmBeforeUploading" value="false" />
     <serverData>
       <paths name="Joomla433">
         <serverdata>
           <mappings>
             <mapping deploy="src" local="$PROJECT_DIR$/src" web="/" />
+            <mapping local="" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="Joomla433 (project level)">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="academy.fresh-trend.com">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="classes.test1.ru">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="dolzav.ru">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="g-p-s.com.ua">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="goorin.spb.ru">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="hohloms.ru">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="joomla440.test1.ru">
+        <serverdata>
+          <mappings>
+            <mapping deploy="libraries\Wishbox\src" local="$PROJECT_DIR$/src" web="/" />
+            <mapping local="" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="optom.semena-tut.ru">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="playandlearn.ru">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/libraries/Wishbox/src" local="$PROJECT_DIR$/src" web="/" />
+            <mapping deploy="" local="" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="shop.silkfantasy.az">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/libraries/Wishbox" local="$PROJECT_DIR$" web="/" />
+            <mapping local="" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="testphp8.semena-tut.ru">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/libraries/Wishbox/src" local="$PROJECT_DIR$/src" web="/" />
             <mapping local="" />
           </mappings>
         </serverdata>

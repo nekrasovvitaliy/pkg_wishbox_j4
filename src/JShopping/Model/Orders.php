@@ -14,16 +14,20 @@ defined('_JEXEC') or die;
 
 /**
  * @property DatabaseInterface $db
+ *
  * @since 1.0.0
+ *
  * @noinspection PhpUnused
  */
 class Orders extends Base
 {
-
 	/**
 	 * @param   array $filters Filters
+	 *
 	 * @return integer
+	 *
 	 * @noinspection PhpUnused
+	 *
 	 * @since 1.0.0
 	 */
 	public function getCountAllOrders(array $filters): int
@@ -43,8 +47,11 @@ class Orders extends Base
 	 * @param   array   $filters          Filters
 	 * @param   string  $filterOrder      Filter order
 	 * @param   string  $filterOrderDir   Filter order direction
+	 *
 	 * @return array
+	 *
 	 * @noinspection PhpUnused
+	 *
 	 * @since 1.0.0
 	 */
 	public function getAllOrders(
@@ -67,7 +74,9 @@ class Orders extends Base
 	/**
 	 * @param   QueryInterface $query   Query
 	 * @param   array          $filters Filters
+	 *
 	 * @return void
+	 *
 	 * @since 1.0.0
 	 */
 	public function setWheres(QueryInterface $query, array $filters): void

@@ -3,9 +3,9 @@
  * @copyright 2023 Nekrasov Vitaliy
  * @license GNU General Public License version 2 or later
  */
-namespace Wishbox\Shippingservice\Russianpost;
+namespace Wishbox\ShippingService\Russianpost;
 
-use AddressNormalizationException;
+use Wishbox\ShippingService\Russianpost\Exception\AddressNormalizationException;
 use InvalidArgumentException;
 use RuntimeException;
 
@@ -78,8 +78,6 @@ class ApiClient
 	 */
 	public function getIndex(string $address): int
 	{
-		echo $address;
-		echo '<br />';
 		$data = [];
 
 		// URL АПИ Почты России
@@ -87,8 +85,6 @@ class ApiClient
 		$data['id'] = 'adr 1';
 		$data['original-address'] = $address;
 		$post = '[' . json_encode($data) . ']';
-		echo $post;
-		echo '<br />';
 		$ch = curl_init($url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		$headers = [
@@ -97,9 +93,6 @@ class ApiClient
 			'Authorization: AccessToken ' . $this->authorisationToken,
 			'X-User-Authorization: Basic ' . $this->authorisationKey
 		];
-		echo '<pre>';
-		print_r($headers);
-		echo '<pre>';
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 		curl_setopt($ch, CURLOPT_HEADER, 0);
 		curl_setopt($ch, CURLOPT_POST, 1);
@@ -132,11 +125,9 @@ class ApiClient
 			)
 		)
 		{
-			throw new AddressNormalizationException(constant($this->title) . ': Адрес неопределён', 500);
+			throw new AddressNormalizationException(': Адрес не определён', 500);
 		}
 
-		// Print_r($result_array);
-		// die;
 		return $resultArray['index'];
 	}
 
@@ -310,7 +301,8 @@ class ApiClient
 		string  $regionTo,
 		string  $streetTo,
 		int     $telAddress
-	): ?int {
+	): ?int
+	{
 		$params = [];
 
 		/*

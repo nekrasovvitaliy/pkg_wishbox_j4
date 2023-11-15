@@ -1,13 +1,25 @@
 <?php
-namespace Wishbox\Shippingservice\Russianpost;
+/**
+ * @copyright 2023 Nekrasov Vitaliy
+ * @license GNU General Public License version 2 or later
+ */
+namespace Wishbox\ShippingService\Russianpost;
 
-use Wishbox\Shippingservice\Russianpost\Exceptions\StatusValidationException;
+use Wishbox\ShippingService\Russianpost\Exception\StatusValidationException;
 
-// Список статусов Почты России
+/**
+ * Список статусов Почты России
+ * @since 1.0.0
+ */
 class StatusList
 {
-	// Карта сопоставления статусов по кодам статуса и подстатуса
-	private array $status_map = [
+	/**
+	 * Карта сопоставления статусов по кодам статуса и подстатуса
+	 *
+	 * @var array|array[]
+	 * @since 1.0.0
+	 */
+	private array $statusMap = [
 		'1' => [ // Прием
 			'1' => 'Единичный',
 			'2' => 'Партионный',
@@ -19,26 +31,27 @@ class StatusList
 			'8' => 'Упрощенный предоплаченный',
 			'9' => 'В соответствие с Поручением экспедитору',
 		],
-		'2' => [ // Вручение
+		// Вручение
+		'2' => [
 			'0' => '',
-			'1' => 'Вручение адресату', // Конечный
-			'2' => 'Вручение отправителю', // Конечный
-			'3' => 'Выдано адресату через почтомат', // Конечный
-			'4' => 'Выдано отправителю через почтомат', // Конечный
-			'5' => 'Адресату электронно', // Конечный
-			'6' => 'Адресату почтальоном', // Конечный
-			'7' => 'Отправителю почтальоном', // Конечный
-			'8' => 'Адресату курьером', // Конечный
-			'9' => 'Отправителю курьером', // Конечный
-			'10' => 'Адресату с контролем ответа', // Конечный
-			'11' => 'Адресату с контролем ответа почтальоном', // Конечный
-			'12' => 'Адресату с контролем ответа курьером', // Конечный
-			'13' => 'Вручение адресату по ПЭП', // Конечный
-			'14' => 'Для передачи на оцифровку', // Конечный
-			'15' => 'Адресату Экспедитором', // Конечный
-			'16' => 'Отправителю Экспедитором', // Конечный
-			'17' => 'Адресату почтальоном по ПЭП', // Конечный
-			'18' => 'Адресату курьером по ПЭП' // Конечный
+			'1' => 'Вручение адресату',
+			'2' => 'Вручение отправителю',
+			'3' => 'Выдано адресату через почтомат',
+			'4' => 'Выдано отправителю через почтомат',
+			'5' => 'Адресату электронно',
+			'6' => 'Адресату почтальоном',
+			'7' => 'Отправителю почтальоном',
+			'8' => 'Адресату курьером',
+			'9' => 'Отправителю курьером',
+			'10' => 'Адресату с контролем ответа',
+			'11' => 'Адресату с контролем ответа почтальоном',
+			'12' => 'Адресату с контролем ответа курьером',
+			'13' => 'Вручение адресату по ПЭП',
+			'14' => 'Для передачи на оцифровку',
+			'15' => 'Адресату Экспедитором',
+			'16' => 'Отправителю Экспедитором',
+			'17' => 'Адресату почтальоном по ПЭП',
+			'18' => 'Адресату курьером по ПЭП'
 		],
 		'3' => [ // Возврат
 			'1' => 'Истёк срок хранения',
@@ -68,7 +81,8 @@ class StatusList
 			'7' => 'По техническим причинам',
 			'8' => 'По согласованию с адресатом',
 		],
-		'5' => [ // Невручение
+		// Невручение
+		'5' => [
 			'1' => 'Утрачено', // Конечный
 			'2' => 'Изъято', // Конечный
 			'3' => 'Засылка',
@@ -451,7 +465,11 @@ class StatusList
 		],
 	];
 
-	private $status_name_list = [
+	/**
+	 * @var string[] $statusNameList Status name list
+	 * @since 1.0.0
+	 */
+	private array $statusNameList = [
 		1 => 'Прием',
 		2 => 'Вручение',
 		3 => 'Возврат',
@@ -508,13 +526,19 @@ class StatusList
 
 	/**
 	 * Проверяет признак конечного статуса
+	 *
+	 * @param   integer $statusId     Status id
+	 * @param   integer $substatusId  Substatus id
+	 *
 	 * @return boolean
+	 *
+	 * @since 1.0.0
 	 */
-	public function isFinal($status_id, $substatus_id = 0)
+	public function isFinal(int $statusId, int $substatusId = 0): bool
 	{
-		if (!$substatus_id)
+		if (!$substatusId)
 		{
-			$substatus_id = 0;
+			$substatusId = 0;
 		}
 
 		$finalList = [
@@ -526,51 +550,59 @@ class StatusList
 			18 => [0]
 		];
 
-		return isset($finalList[$status_id]) && in_array($substatus_id, $finalList[$status_id]);
+		return isset($finalList[$statusId]) && in_array($substatusId, $finalList[$statusId]);
 	}
 
 	/**
 	 * Функция по коду статуса или статуса и подстатуса возвращает информацию по статусу
-	 * @param   int $status_id код статуса
-	 * @param   int $substatus_id код подстатуса (Если не передан, то вернет информацию только по статусу)
-	 * @param   string $status_name название статуса (Если не передан, то возьмет название из справочника)
+	 *
+	 * @param   integer  $statusId     Код статуса
+	 * @param   integer  $substatusId  Код подстатуса (Если не передан, то вернет информацию только по статусу)
+	 * @param   string   $statusName   Название статуса (Если не передан, то возьмет название из справочника)
+	 *
 	 * @return array
+	 *
+	 * @throws StatusValidationException
+	 *
+	 * @since 1.0.0
 	 */
-	public function getInfo($status_id, $substatus_id = false, bool $status_name = false)
+	public function getInfo(int $statusId, int $substatusId = 0, string $statusName = ''): array
 	{
 		// Проверяем, что передан существующий код статуса
-		if (empty($this->status_map[$status_id]))
+		if (empty($this->statusMap[$statusId]))
 		{
-			throw new StatusValidationException('Неверный код статуса: ' . $status_id, 404);
+			throw new StatusValidationException('Неверный код статуса: ' . $statusId, 404);
 		}
 
 		// Проверяем, что передан существующий код подстатуса
-		if (isset($substatus_id) && empty($this->status_map[$status_id][$substatus_id]))
+		if (isset($substatusId) && empty($this->statusMap[$statusId][$substatusId]))
 		{
-			throw new StatusValidationException('Неверный код подстатуса: статус ' . $status_id . ', подстатус ' . $substatus_id, 405);
+			throw new StatusValidationException(
+				'Неверный код подстатуса: статус ' . $statusId . ', подстатус ' . $substatusId,
+				405
+			);
 		}
 
-		if (empty($status_name))
+		if (empty($statusName))
 		{
-			$status_name = !empty($this->status_name_list[$status_id])
-				? $this->status_name_list[$status_id] : 'Не определено';
+			$statusName = !empty($this->statusNameList[$statusId]) ? $this->statusNameList[$statusId] : 'Не определено';
 		}
 
-		$result['statusName'] = $status_name;
-		$result['statusId'] = $status_id;
-		$result['isFinal'] = $this->isFinal($status_id, $substatus_id);
+		$result['statusName'] = $statusName;
+		$result['statusId'] = $statusId;
+		$result['isFinal'] = $this->isFinal($statusId, $substatusId);
 
-		if (isset($substatus_id))
+		if (isset($substatusId))
 		{
-			$result['substatusId'] = $substatus_id;
+			$result['substatusId'] = $substatusId;
 
-			if (!empty($this->status_map[$status_id][$substatus_id]))
+			if (!empty($this->statusMap[$statusId][$substatusId]))
 			{
-				$result['substatusName'] = $this->status_map[$status_id][$substatus_id];
+				$result['substatusName'] = $this->statusMap[$statusId][$substatusId];
 			}
-			elseif (!empty($this->status_map[$status_id][0]))
+			elseif (!empty($this->statusMap[$statusId][0]))
 			{
-				$result['substatusName'] = $this->status_map[$status_id][0];
+				$result['substatusName'] = $this->statusMap[$statusId][0];
 			}
 			else
 			{
