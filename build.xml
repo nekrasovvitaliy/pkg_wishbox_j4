@@ -1,22 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="pkg_wishbox_j4" default="make" basedir=".">
-    <tstamp>
-        <format property="build.date" pattern="%Y-%m-%d" />
-    </tstamp>
-
     <property name="build" value="build" />
-    <property name="prefix" value="pkg_" />
-    <property name="extension" value="wishbox" />
-    <property name="jversion" value="_j4" />
+    <property name="prefix" value="pkg" />
+    <property name="extension" value="wb" />
+    <property name="version" value="1.0.0" />
 
     <target name="make" description="Builds the extension release package for a version.">
-        <echo msg="Making the${build}/${prefix}${extension}${jversion} package." />
-
-        <zip destfile="${prefix}${extension}${jversion}.zip">
+        <delete quiet="yes">
             <fileset dir=".">
+                <include name="pkg_wishbox_j4.zip" />
+            </fileset>
+        </delete>
+
+        <zip destfile="lib_wishbox/lib_wishbox.zip">
+            <fileset dir="./lib_wishbox">
+                <include name="language/**" />
                 <include name="src/**" />
-                <include name="Wishbox.xml" />
+                <include name="lib_wishbox.xml" />
             </fileset>
         </zip>
+
+        <zip destfile="pkg_wishbox_j4.zip">
+            <fileset dir="./lib_wishbox">
+                <include name="lib_wishbox.zip" />
+            </fileset>
+            <fileset dir="./">
+                <include name="language/**" />
+                <include name="pkg_wishbox.xml" />
+                <include name="script.php" />
+            </fileset>
+        </zip>
+
+        <delete quiet="yes">
+            <fileset dir=".">
+                <include name="lib_wishbox/lib_wishbox.zip" />
+            </fileset>
+        </delete>
     </target>
 </project>

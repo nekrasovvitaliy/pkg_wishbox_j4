@@ -18,17 +18,11 @@
           </mappings>
         </serverdata>
       </paths>
-      <paths name="academy.fresh-trend.com">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
       <paths name="classes.test1.ru">
         <serverdata>
           <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/libraries/Wishbox/src" local="$PROJECT_DIR$/src" web="/" />
+            <mapping local="" />
           </mappings>
         </serverdata>
       </paths>
@@ -53,6 +47,14 @@
           </mappings>
         </serverdata>
       </paths>
+      <paths name="goorin.test1.ru">
+        <serverdata>
+          <mappings>
+            <mapping deploy="libraries\Wishbox\src" local="$PROJECT_DIR$/src" web="/" />
+            <mapping local="" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="hohloms.ru">
         <serverdata>
           <mappings>
@@ -63,8 +65,22 @@
       <paths name="joomla440.test1.ru">
         <serverdata>
           <mappings>
-            <mapping deploy="libraries\Wishbox\src" local="$PROJECT_DIR$/src" web="/" />
-            <mapping local="" />
+            <mapping deploy="/libraries/wishbox/src" local="$PROJECT_DIR$/lib_wishbox/src" web="/" />
+            <mapping deploy="/language" local="$PROJECT_DIR$/language" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="joomla503.test1.ru">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="lubimovka.fa4.ru">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
@@ -80,6 +96,14 @@
           <mappings>
             <mapping deploy="/libraries/Wishbox/src" local="$PROJECT_DIR$/src" web="/" />
             <mapping deploy="" local="" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="playandlearn.test.ru">
+        <serverdata>
+          <mappings>
+            <mapping deploy="libraries\Wishbox\src" local="$PROJECT_DIR$/src" web="/" />
+            <mapping local="" />
           </mappings>
         </serverdata>
       </paths>
@@ -104,6 +128,13 @@
           <mappings>
             <mapping deploy="/libraries/Wishbox/src" local="$PROJECT_DIR$/src" web="/" />
             <mapping local="" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="yootheme.test1.ru">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>

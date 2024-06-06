@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="LaravelPintOptionsConfiguration">
-    <option name="ruleset" value="laravel" />
-  </component>
   <component name="MessDetectorOptionsConfiguration">
     <option name="transferred" value="true" />
   </component>
@@ -21,8 +18,23 @@
   </component>
   <component name="PhpIncludePathManager">
     <include_path>
-      <path value="C:/OpenServer/domains/joomla433.test1.ru" />
+      <path value="C:/OpenServer/domains/joomla440.test1.ru" />
     </include_path>
+  </component>
+  <component name="PhpProjectServersManager">
+    <servers>
+      <server host="goorin.test1.ru" id="c6eb2b13-1cd6-4009-96c1-e0f6e1c3329a" name="goorin.test1.ru" use_path_mappings="true" />
+      <server host="joomla440.test1.ru" id="62607320-2ade-4cb4-af82-07a59f1738a3" name="joomla440.test1.ru" use_path_mappings="true">
+        <path_mappings>
+          <mapping local-root="$PROJECT_DIR$/lib_wishbox/src" remote-root="C:/OpenServer/domains/joomla440.test1.ru/libraries/wishbox/src" />
+        </path_mappings>
+      </server>
+      <server host="playandlearn.test1.ru" id="ece560fe-26fb-4bb5-a693-da42eec17f10" name="playandlearn.test1.ru" port="443" use_path_mappings="true">
+        <path_mappings>
+          <mapping local-root="$PROJECT_DIR$/src" remote-root="C:/OpenServer/domains/playandlearn.test1.ru/libraries/Wishbox/src" />
+        </path_mappings>
+      </server>
+    </servers>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.2">
     <option name="suggestChangeDefaultLanguageLevel" value="false" />

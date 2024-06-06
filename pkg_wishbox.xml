@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<extension type="package" version="4.3.4" method="upgrade">
+    <name>pkg_wishbox</name>
+    <author>Nekrasov Vitaliy</author>
+    <creationDate>March 2024</creationDate>
+    <packagename>wishbox</packagename>
+    <version>1.0.0</version>
+    <packager>Nekrasov Vitaliy</packager>
+    <description>PKG_WISHBOX_XML_DESCRIPTION</description>
+    <scriptfile>script.php</scriptfile>
+    <languages folder="language">
+        <language tag="en-GB">en-GB/pkg_wishbox.sys.ini</language>
+        <language tag="ru-RU">ru-RU/pkg_wishbox.sys.ini</language>
+    </languages>
+    <files>
+        <file type="library" id="wishbox">lib_wishbox.zip</file>
+    </files>
+</extension>
