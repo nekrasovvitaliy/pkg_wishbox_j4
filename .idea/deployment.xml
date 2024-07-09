@@ -67,6 +67,7 @@
           <mappings>
             <mapping deploy="/libraries/wishbox/src" local="$PROJECT_DIR$/lib_wishbox/src" web="/" />
             <mapping deploy="/language" local="$PROJECT_DIR$/language" web="/" />
+            <mapping deploy="layouts\libraries\wishbox" local="$PROJECT_DIR$/lib_wishbox/layouts/wishbox" web="/" />
           </mappings>
         </serverdata>
       </paths>

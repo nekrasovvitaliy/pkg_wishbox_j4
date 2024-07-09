@@ -1,7 +1,7 @@
 <?php
 /**
- * @copyright 2023 Nekrasov Vitaliy
- * @license GNU General Public License version 2 or later
+ * @copyright   (с) 2013-2024 Nekrasov Vitaliy <nekrasov_vitaliy@list.ru>
+ * @license     GNU General Public License version 2 or later
  */
 namespace Wishbox\Field;
 
@@ -40,7 +40,7 @@ class ListajaxsearchField extends ListField
 	 *
 	 * @since  1.0.0
 	 */
-	protected $layout = 'joomla.form.field.listajaxsearch';
+	protected $layout = 'libraries.wishbox.form.field.listajaxsearch';
 
 	/**
 	 * Min length of terms
@@ -110,9 +110,22 @@ class ListajaxsearchField extends ListField
 	 */
 	protected function getOptions(): array
 	{
-		$options = parent::getOptions();
+		$options = [];
 
-		if ($this->value && !empty($this->query))
+		$optionValues = array(...array_column($options, 'value'));
+		$parentOptions = parent::getOptions();
+
+		foreach ($parentOptions as $k => $parentOption)
+		{
+			if (in_array($parentOption->value, $optionValues))
+			{
+				unset($parentOptions[$k]);
+			}
+		}
+
+		$parentOptionValues = array(...array_column($parentOptions, 'value'));
+
+		if (!in_array($this->value, $parentOptionValues) && $this->value && !empty($this->query))
 		{
 			$db = Factory::getContainer()->get(DatabaseDriver::class);
 			$db->setQuery($this->query . $this->value);
@@ -121,15 +134,15 @@ class ListajaxsearchField extends ListField
 			if ($text)
 			{
 				$options[] = HTMLHelper::_(
-						'select.option',
-						$this->value,
-						$text
-					);
+					'select.option',
+					$this->value,
+					$text
+				);
 			}
 		}
 
 		// Merge any additional options in the XML definition.
-		return $options;
+		return array_merge($parentOptions, $options);
 	}
 
 	/**

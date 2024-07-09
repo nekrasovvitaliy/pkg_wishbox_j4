@@ -1,7 +1,7 @@
 <?php
 /**
- * @copyright 2023 Nekrasov Vitaliy
- * @license GNU General Public License version 2 or later
+ * @copyright   (с) 2013-2024 Nekrasov Vitaliy <nekrasov_vitaliy@list.ru>
+ * @license     GNU General Public License version 2 or later
  */
 namespace Wishbox\ShippingService;
 
@@ -75,7 +75,7 @@ class ShippingTariff
 	}
 
 	/**
-	 * @param   integer $periodMin Min period (days)
+	 * @param   integer  $periodMin  Min period (days)
 	 *
 	 * @return ShippingTariff
 	 *
@@ -91,7 +91,7 @@ class ShippingTariff
 	}
 
 	/**
-	 * @param   int $periodMax Max period (days)
+	 * @param   integer  $periodMax  Max period (days)
 	 *
 	 * @return self
 	 *
@@ -107,7 +107,7 @@ class ShippingTariff
 	}
 
 	/**
-	 * @param   float $shipping Shipping price
+	 * @param   float  $shipping  Shipping price
 	 *
 	 * @return ShippingTariff
 	 *
@@ -123,7 +123,7 @@ class ShippingTariff
 	}
 
 	/**
-	 * @param   float $package Shipping price
+	 * @param   float  $package  Shipping price
 	 *
 	 * @return ShippingTariff
 	 *
@@ -139,7 +139,7 @@ class ShippingTariff
 	}
 
 	/**
-	 * @param   string $code Shipping service code
+	 * @param   string  $code  Shipping service code
 	 *
 	 * @return ShippingTariff
 	 *
@@ -155,7 +155,7 @@ class ShippingTariff
 	}
 
 	/**
-	 * @param   string $name Shipping service name
+	 * @param   string  $name  Shipping service name
 	 *
 	 * @return ShippingTariff
 	 *

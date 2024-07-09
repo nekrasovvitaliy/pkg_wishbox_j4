@@ -1,7 +1,7 @@
 <?php
 /**
- * @copyright 2023 Nekrasov Vitaliy
- * @license GNU General Public License version 2 or later
+ * @copyright   (с) 2013-2024 Nekrasov Vitaliy <nekrasov_vitaliy@list.ru>
+ * @license     GNU General Public License version 2 or later
  */
 namespace Wishbox\Field;
 
@@ -117,13 +117,13 @@ class ListField extends FieldListField
 	 *
 	 * @return  array
 	 *
-	 * @since   3.5
+	 * @since   1.0.0
 	 */
-	protected function getLayoutPaths()
+	protected function getLayoutPaths(): array
 	{
 		$layoutPaths = parent::getLayoutPaths();
 
-		$layoutPaths[] = JPATH_SITE . '/libraries/Wishbox/src/layouts';
+		$layoutPaths[] = JPATH_SITE . '/libraries/wishbox/src/layouts';
 
 		return $layoutPaths;
 	}

@@ -6,6 +6,7 @@
     <author>Nekrasov Vitaliy</author>
     <version>1.0.0</version>
     <namespace path="src">Wishbox</namespace>
+    <scriptfile>script.php</scriptfile>
     <languages folder="language">
         <language tag="en-GB">en-GB/lib_wishbox.sys.ini</language>
         <language tag="ru-RU">ru-RU/lib_wishbox.sys.ini</language>
@@ -13,4 +14,7 @@
     <files>
         <folder>src</folder>
     </files>
+    <layouts destination="libraries" folder="layouts">
+        <folder>wishbox</folder>
+    </layouts>
 </extension>

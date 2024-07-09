@@ -15,8 +15,10 @@
         <zip destfile="lib_wishbox/lib_wishbox.zip">
             <fileset dir="./lib_wishbox">
                 <include name="language/**" />
+                <include name="layouts/**" />
                 <include name="src/**" />
                 <include name="lib_wishbox.xml" />
+                <include name="script.php" />
             </fileset>
         </zip>
 
