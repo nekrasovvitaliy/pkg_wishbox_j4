@@ -6,7 +6,6 @@
 namespace Wishbox\Trait;
 
 use Exception;
-use Joomla\CMS\Factory;
 use Joomla\CMS\Http\HttpFactory;
 use Joomla\Registry\Registry;
 

@@ -1,11 +1,7 @@
 <?php
-
 /**
- * @package     Joomla.Site
- * @subpackage  Layout
- *
- * @copyright   (C) 2018 Open Source Matters, Inc. <https://www.joomla.org>
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @copyright   (c) 2013-2024 Open Source Matters, Inc. <https://www.joomla.org>
+ * @license     GNU General Public License version 2 or later
  */
 
 defined('_JEXEC') or die;
@@ -13,7 +9,6 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
-use Joomla\CMS\Uri\Uri;
 
 extract($displayData);
 
@@ -52,6 +47,7 @@ extract($displayData);
  * @var   integer  $minTermLength   Minimum length of the term to start searching
  * @var   string   $dataAttribute   Miscellaneous data attributes preprocessed for HTML output
  * @var   array    $dataAttributes  Miscellaneous data attributes for eg, data-*.
+ * @var   mixed    $value           Value
  */
 
 $html = [];

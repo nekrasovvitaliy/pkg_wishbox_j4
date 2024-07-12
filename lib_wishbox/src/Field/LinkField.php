@@ -107,7 +107,9 @@ class LinkField extends FormField
 		{
 			/** @var Document $document */
 			$document = $app->getDocument();
-			$document->addStyleDeclaration('
+
+			$wa = $document->getWebAssetManager();
+			$wa->addInlineStyle('
                 #jformparamscategories{width:auto;}
                 #attrib-selecting_categories .control-label{width:65px;}
                 #attrib-selecting_categories .controls{margin-left:0;}
