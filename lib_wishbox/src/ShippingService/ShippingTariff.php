@@ -169,4 +169,76 @@ class ShippingTariff
 
 		return $this;
 	}
+
+    /**
+     * @return integer
+     *
+     * @since 1.0.0
+     *
+     * @noinspection PhpUnused
+     */
+    public function getPeriodMin(): int
+    {
+        return $this->periodMin;
+    }
+
+    /**
+     * @return integer
+     *
+     * @since 1.0.0
+     *
+     * @noinspection PhpUnused
+     */
+    public function getPeriodMax(): int
+    {
+        return $this->periodMax;
+    }
+
+    /**
+     * @return float
+     *
+     * @since 1.0.0
+     *
+     * @noinspection PhpUnused
+     */
+    public function getShipping(): float
+    {
+        return $this->shipping;
+    }
+
+    /**
+     * @return float
+     *
+     * @since 1.0.0
+     *
+     * @noinspection PhpUnused
+     */
+    public function getPackage(): float
+    {
+        return $this->package;
+    }
+
+    /**
+     * @return string
+     *
+     * @since 1.0.0
+     *
+     * @noinspection PhpUnused
+     */
+    public function getCode(): string
+    {
+        return $this->code;
+    }
+
+    /**
+     * @return string
+     *
+     * @since 1.0.0
+     *
+     * @noinspection PhpUnused
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
 }
