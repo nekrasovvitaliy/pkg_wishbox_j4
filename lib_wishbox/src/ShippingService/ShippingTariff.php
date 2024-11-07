@@ -75,6 +75,39 @@ class ShippingTariff
 	}
 
 	/**
+	 * @return array
+	 *
+	 * @since 1.0.00
+	 */
+	public function toArray(): array
+	{
+		return [
+			'periodMin' => $this->periodMin,
+			'periodMax' => $this->periodMax,
+			'shipping'  => $this->shipping,
+			'package'   => $this->package,
+			'code'      => $this->code,
+			'name'      => $this->name,
+		];
+	}
+
+	/**
+	 * @param   array  $array  Array
+	 *
+	 * @return ShippingTariff
+	 *
+	 * @since 1.0.00
+	 */
+	public static function withArray(array $array): ShippingTariff
+	{
+		return (new ShippingTariff($array['shipping'], $array['package']))
+			->setPeriodMin($array['periodMin'])
+			->setPeriodMax($array['periodMax'])
+			->setCode($array['code'])
+			->setName($array['name']);
+	}
+
+	/**
 	 * @param   integer  $periodMin  Min period (days)
 	 *
 	 * @return ShippingTariff
@@ -170,75 +203,75 @@ class ShippingTariff
 		return $this;
 	}
 
-    /**
-     * @return integer
-     *
-     * @since 1.0.0
-     *
-     * @noinspection PhpUnused
-     */
-    public function getPeriodMin(): int
-    {
-        return $this->periodMin;
-    }
+	/**
+	 * @return integer
+	 *
+	 * @since 1.0.0
+	 *
+	 * @noinspection PhpUnused
+	 */
+	public function getPeriodMin(): int
+	{
+		return $this->periodMin;
+	}
 
-    /**
-     * @return integer
-     *
-     * @since 1.0.0
-     *
-     * @noinspection PhpUnused
-     */
-    public function getPeriodMax(): int
-    {
-        return $this->periodMax;
-    }
+	/**
+	 * @return integer
+	 *
+	 * @since 1.0.0
+	 *
+	 * @noinspection PhpUnused
+	 */
+	public function getPeriodMax(): int
+	{
+		return $this->periodMax;
+	}
 
-    /**
-     * @return float
-     *
-     * @since 1.0.0
-     *
-     * @noinspection PhpUnused
-     */
-    public function getShipping(): float
-    {
-        return $this->shipping;
-    }
+	/**
+	 * @return float
+	 *
+	 * @since 1.0.0
+	 *
+	 * @noinspection PhpUnused
+	 */
+	public function getShipping(): float
+	{
+		return $this->shipping;
+	}
 
-    /**
-     * @return float
-     *
-     * @since 1.0.0
-     *
-     * @noinspection PhpUnused
-     */
-    public function getPackage(): float
-    {
-        return $this->package;
-    }
+	/**
+	 * @return float
+	 *
+	 * @since 1.0.0
+	 *
+	 * @noinspection PhpUnused
+	 */
+	public function getPackage(): float
+	{
+		return $this->package;
+	}
 
-    /**
-     * @return string
-     *
-     * @since 1.0.0
-     *
-     * @noinspection PhpUnused
-     */
-    public function getCode(): string
-    {
-        return $this->code;
-    }
+	/**
+	 * @return string
+	 *
+	 * @since 1.0.0
+	 *
+	 * @noinspection PhpUnused
+	 */
+	public function getCode(): string
+	{
+		return $this->code;
+	}
 
-    /**
-     * @return string
-     *
-     * @since 1.0.0
-     *
-     * @noinspection PhpUnused
-     */
-    public function getName(): string
-    {
-        return $this->name;
-    }
+	/**
+	 * @return string
+	 *
+	 * @since 1.0.0
+	 *
+	 * @noinspection PhpUnused
+	 */
+	public function getName(): string
+	{
+		return $this->name;
+	}
 }

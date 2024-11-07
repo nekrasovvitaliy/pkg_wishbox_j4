@@ -128,7 +128,9 @@ class ListajaxsearchField extends ListField
 		if (!in_array($this->value, $parentOptionValues) && $this->value && !empty($this->query))
 		{
 			$db = Factory::getContainer()->get(DatabaseDriver::class);
-			$db->setQuery($this->query . $this->value);
+            $query = $this->query . $db->q($this->value);
+
+			$db->setQuery($query);
 			$text = $db->loadResult();
 
 			if ($text)
